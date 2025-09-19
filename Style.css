@@ -1,0 +1,85 @@
+/* PHOTO CONTAINER */
+#photo {
+    height: 100vh;
+    width: 100vw;
+    background-color: white;
+    display: none;                /* hidden initially */
+    position: fixed;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;                   /* behind button initially */
+}
+
+/* SHOW STATE */
+#photo.show {
+    display: flex;
+    animation: BgDark 2s ease-in forwards, PhotoZIndex 4s forwards;
+}
+
+/* PHOTO IMAGE */
+#photo img {
+    transform: scale(0) translateY(0); /* start small at center */
+    z-index: 1;
+}
+
+/* IMAGE ANIMATION ONLY WHEN SHOW CLASS IS ADDED */
+#photo.show img {
+    animation: Moveup 4s ease-in forwards;
+}
+
+/* KEYFRAMES */
+@keyframes PhotoZIndex {
+    0%, 49%  { z-index: 1; }   /* behind button */
+    50%, 100% { z-index: 3; }  /* above button */
+}
+
+@keyframes BgDark {
+    0%   { background-color: white; }
+    100% { background-color: black; }
+}
+
+@keyframes Moveup {
+    0% {
+        transform: scale(0) translateY(0); /* start small at center */
+    }
+    50% {
+        transform: scale(0.1) translateY(-80%); /* small behind button */
+    }
+    75% {
+        transform: scale(0.1) translateY(-80%); /* slight upward move */
+    }
+    100% {
+        transform: scale(1) translateY(0); /* full screen */
+    }
+}
+
+/* BUTTON CONTAINER */
+#button_box {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    z-index: 2;
+}
+
+/* BUTTON STYLE */
+button {
+    height: 100px;
+    width: 100px;
+    background-color: hsl(0, 0%, 90%);
+    box-shadow: 2px 3px gray;
+    border: none;
+    border-radius: 20%;
+    font-family: Aclonica;
+}
+
+button:hover {
+    background-color: hsl(0, 0%, 60%);
+}
+
+button:active {
+    background-color: hsl(0, 0%, 80%);
+}
